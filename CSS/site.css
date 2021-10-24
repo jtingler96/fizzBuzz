@@ -1,0 +1,72 @@
+:root{
+    --primary-color: #3B6087;
+    --secondary-color: #719bc7;
+    --third-color: #87662E;
+    --secondary-dark-color:#3B3120;
+    --dark-color: #202d3b;
+    --white-color: #f8f3e8;
+}
+
+body{
+    color:var(--dark-color);
+    background-color:var(--white-color);
+}
+
+nav{
+    background-color:var(--dark-color)
+}
+
+footer{
+    background-color:var(--dark-color);
+}
+
+h1,h2,h3,h4,h5,h6{
+    color: var(--primary-color);
+}
+
+footer{
+    padding-right: 1rem;
+}
+
+footer .social>a{
+    color: var(--white-color);
+    opacity: 0.75;
+}
+
+footer .social>a:hover{
+    color: var(--secondary-color);
+    opacity: 0.9;
+}
+
+.bsicon{
+    color: #563d7c;
+}
+
+.jsicon{
+    color:  #f0db4f;
+    
+}
+
+.html5icon{
+    color: #e34c26;
+}
+
+.cssicon{
+    color: #264de4;
+}
+
+.checklist >li i{
+    color: var(--secondary-color);
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+main>.container {
+    padding: 60px 15px 0;
+    margin-bottom: 5rem;
+}
