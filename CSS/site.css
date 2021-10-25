@@ -67,10 +67,12 @@ footer .social>a:hover{
 
 .Fizz{
     color:green;
+    font-weight: bold;
 }
 
 .Buzz{
     color: blue;
+    font-weight: bold;
 }
 
 .FizzBuzz{
