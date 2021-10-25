@@ -1,10 +1,16 @@
 :root{
-    --primary-color: #3B6087;
+    --primary-color: #E66B08;
     --secondary-color: #719bc7;
     --third-color: #87662E;
     --secondary-dark-color:#3B3120;
     --dark-color: #202d3b;
     --white-color: #f8f3e8;
+}
+
+.logofont{
+    font-family: ethnocentric, sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 body{
@@ -56,7 +62,20 @@ footer .social>a:hover{
 }
 
 .checklist >li i{
-    color: var(--secondary-color);
+    color: #E66B08;
+}
+
+.Fizz{
+    color:green;
+}
+
+.Buzz{
+    color: blue;
+}
+
+.FizzBuzz{
+    color: var(--primary-color);
+    font-weight: bold;
 }
 
 code[class*="language-"],

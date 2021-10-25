@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Joshua Tingler</title>
+    <title>Fizz Buzz: A Coding Project By Joshua Tingler</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://use.typekit.net/dwq1hgt.css">
     <link href="IMG/icon-light.svg" rel="icon">
     <link rel="stylesheet" href="CSS/site.css">
     <link rel="stylesheet" href="CSS/prism.css">
@@ -21,7 +21,7 @@
     <!-- ==== Nav Section ==== -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="Index.html"><img src="IMG/icon-light.svg" class="d-inline-block align-text-center" height="35"> NAME</a>
+            <a class="navbar-brand logofont" href="Index.html"><img src="IMG/icon-light.svg" class="d-inline-block align-text-center" height="35"> Fizz Buzz</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,21 +50,177 @@
     <!-- ==== Main Section ==== -->
     <main class="flex-shrink-0">
         <div class="container py-5 px-5 mt-5">
-            <h2 class="border-1 border-bottom border-dark">The Code for APP NAME</h2>
+            <h2 class="border-1 border-bottom border-dark">The Code for <span class="logofont">Fizz Buzz</span></h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-                        //Call Hello World
-                        function HelloWorld(){
-                            alert("Hello World");
+                        function getValues(){
+                            //get values from the page
+                            let fizzValue = document.getElementById("fizzValue").value;
+                            let buzzValue = document.getElementById("buzzValue").value;
+                            
+                            //validate the input & convert into integers
+                            fizzValue = parseInt(fizzValue);
+                            buzzValue = parseInt(buzzValue);
+                        
+                            if(Number.isInteger(fizzValue) && Number.isInteger(buzzValue)){
+                                
+                                //call fizzBuzz
+                                let fbArray = fizzBuzzV3(fizzValue, buzzValue);
+                                //call displayfbArray
+                                displayData(fbArray);
+                        
+                            } else {
+                                alert("You must enter an integer");
+                            }
                         }
+                        
+                        //Traditional Solve Fizz Buzz with a for loop
+                        function fizzBuzz(fizzValue, buzzValue) {
+                           
+                            let returnArray = [];
+                        
+                            //use a for loop to count from 0 to 100
+                            for (var i = 1; i <= 100; i++) {
+                        
+                                //If the integer is divisible by the fizzValue and the buzzValue add "FizzBuzz" to the Array
+                                if (i % fizzValue == 0 && i % buzzValue == 0) { 
+                                    returnArray.push("FizzBuzz");
+                                
+                                //If the integer is divisible by the fizzValue, add "Fizz" to the Array
+                                } else if (i % fizzValue == 0) { 
+                                    returnArray.push("Fizz");
+                        
+                                //If the integer is divisible by the buzzValue, add "Buzz" to the Array
+                                } else if (i % buzzValue == 0) { 
+                                    returnArray.push("Buzz");
+                                //If none of the conditions are met return the integer
+                                } else { 
+                                    returnArray.push(i);
+                                }
+                            }
+                             return returnArray;
+                        }
+                        
+                        //fizzBuzzV2 switch statement
+                        function fizzBuzzV2(fizzValue, buzzValue){
+                        
+                            let returnArray = [];
+                            let Fizz = false;
+                            let buzz = false;
+                        
+                            for (let i = 1; i <= 100; i++) {
+                                
+                                Fizz = i % fizzValue == 0;
+                                Buzz = i % buzzValue == 0;
+                        
+                                switch(true){
+                                    case Fizz && Buzz:{
+                                        returnArray.push("FizzBuzz");
+                                        break;
+                                    }
+                                    case Fizz: {
+                                        returnArray.push("Fizz");
+                                        break;
+                                    }
+                                    case Buzz: {
+                                        returnArray.push("Buzz");
+                                        break;
+                                    }
+                                    default: {
+                                        returnArray.push(i);
+                                        break;
+                                    }
+                                }
+                            }
+                            return returnArray;
+                        }
+                        
+                        //fizzBuzzV3 ternary operator
+                        function fizzBuzzV3(fizzValue, buzzValue){
+                            let returnArray = [];
+                        
+                            for (let i = 1; i <= 100; i++) {
+                                
+                                let value = ((i%fizzValue == 0 ? 'Fizz' : '') + (i % buzzValue == 0 ? 'Buzz' : '' ) || i)
+                                returnArray.push(value);
+                            }
+                            return returnArray;
+                        }
+                        //loop over the array and create a tablerow for each item
+                        function displayData(fbArray) {
+                        
+                            //get the table body element from the page
+                            let tableBody = document.getElementById("results");
+                        
+                            //get the template row
+                            let templateRow = document.getElementById("fbTemplate");
+                        
+                            //clear the table first
+                            tableBody.innerHTML = "";
+                        
+                            for (let i = 0; i < fbArray.length; i += 5) {
+                        
+                                let tableRow = document.importNode(templateRow.content, true);
+                        
+                                //grab just the tds and put into array
+                                let rowCols = tableRow.querySelectorAll("td");
+                        
+                                rowCols[0].classList.add(fbArray[i]);
+                                rowCols[0].textContent = fbArray[i];
+                        
+                                rowCols[1].classList.add(fbArray[i+1]);
+                                rowCols[1].textContent = fbArray[i+1];
+                        
+                                rowCols[2].classList.add(fbArray[i+2]);
+                                rowCols[2].textContent = fbArray[i+2];
+                        
+                                rowCols[3].classList.add(fbArray[i+3]);
+                                rowCols[3].textContent = fbArray[i+3];
+                        
+                                rowCols[4].classList.add(fbArray[i+4]);
+                                rowCols[4].textContent = fbArray[i+4];
+                        
+                                tableBody.appendChild(tableRow);
+                            }
+                        }
+                        
                     </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                    <h4>getValues()</h4>
+                    <p><strong>getValues</strong> is a function that gets the fizz and buzz Values from the user and displays integers from 1-100. 
+                        Each integer displayed will be replaced by <span class="Fizz">Fizz</span> if it is divisible by the fizzValue, 
+                        <span class="Buzz">Buzz</span> if it is divisible by the buzzValue, 
+                        and <span class="FizzBuzz">FizzBuzz</span> if it is divisible by both the fizz and buzz values.</p>
+                    <p>First the function attempts to convert any non integer inputs into integers. 
+                        If the input cannot be converted into an integer, an alert appears telling the 
+                        user they must enter an integer. </p>
+                    <p>Next, the function calls two more functions: <strong>fizzBuzz</strong> and 
+                        <strong>displayData</strong>.</p><hr>
+
+                    <h4>fizzBuzz()</h4>
+                    <p><strong>fizzBuzz</strong> is a function that uses a <strong>for loop</strong> to count from 0-100, and an <strong>if-else</strong> 
+                        statement to evaluate each integer. <span class="Fizz">Fizz</span> is pushed to an array if the integer is divisible by the fizzValue, 
+                        <span class="Buzz">Buzz</span> is pushed to the array if the integer is divisible by the buzzValue, 
+                        and <span class="FizzBuzz">FizzBuzz</span> is pushed to the array if the integer is divisible by the fizzValue and the buzzValue.</p><hr>
+
+                        <h4>fizzBuzzV2()</h4>
+                    <p><strong>fizzBuzzV2</strong> is a function that has the same end result as the <strong>fizzBuzz</strong> function. It still uses a loop to count from 0-100, but instead of using a 
+                        conditional if-else statement, it uses boolean logic to evaluate each integer. This is accomplished with a switch statement that changes the values with cases. 
+                        If the case is true, it pushes the corresponding string ("Fizz", "Buzz", or "FizzBuzz") to an array.
+                        If no case is true, the default is to push the integer itself to the array. 
+                    </p><hr>
+
+                        <h4>fizzBuzzV3()</h4>
+                    <p><strong>fizzBuzzV3</strong> is a function that has the same end result as the <strong>fizzBuzz</strong> and <strong>fizzBuzzV2 </strong>functions. 
+                        Like <strong>fizzBuzzV2</strong>, it also uses a loop to count from 0-100 and boolean logic to evaluate each integer, but it uses Ternary operators to format the values in one statement and then pushes the values to an array.</p><hr>
+
+                    <h4>displayData()</h4>
+                    <p><strong>displayData</strong> is a function that displays the numbers in a given array as table data on the page. 
+                        This is accomplished using a <strong>for loop</strong> to add data to a predefined HTML template row element and place 
+                        the new template row in the table body element with the id: "results".</p>
                 </div>
             </div>
                 
